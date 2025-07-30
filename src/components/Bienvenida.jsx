@@ -19,7 +19,7 @@ const Bienvenida = ({ onIngresar }) => {
         />
         <h1>Sistema SPAFE</h1>
         <p style={{ marginBottom: "2rem", fontSize: "1rem", color: "#555" }}>
-          inicie sesión con sus credenciales de Intranet.
+          Inicie sesión con sus credenciales de Intranet SP.
         </p>
         <div className="formulario-login">
           <input

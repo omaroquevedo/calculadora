@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import Header from "./Header";
 
 const FormularioVejez = () => {
@@ -102,12 +104,30 @@ const FormularioVejez = () => {
     reader.readAsText(file);
   };
 
+  const exportarPDF = () => {
+    const doc = new jsPDF();
+    doc.setFontSize(14);
+    doc.text("Resumen del formulario - Pensión de Vejez", 14, 20);
+
+    const rows = campos.map(({ label }) => [label, formData[label] || ""]);
+
+    doc.autoTable({
+      startY: 30,
+      head: [["Campo", "Valor"]],
+      body: rows,
+      styles: { fontSize: 10 },
+      headStyles: { fillColor: [26, 67, 129] },
+    });
+
+    doc.save("PAFE_vejez.pdf");
+  };
+
   return (
     <>
       <Header />
       <div className="fondo-bienvenida">
         <div className="formulario-container">
-          <h1 style={{ color: "#1a4381", marginBottom: "1rem" }}>Formulario - Pensión de Vejez</h1>
+          <h1 style={{ color: "#1a4381", marginBottom: "1rem" }}>PAFE-Pensión de Vejez</h1>
 
           <div className="fila">
             <label>Cargar archivo semiestructurada</label>
@@ -138,8 +158,25 @@ const FormularioVejez = () => {
               </div>
             ))}
           </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "2rem" }}>
+            <button
+              className="boton-calcular"
+              onClick={() => {
+                // Aquí puedes colocar tu lógica de cálculo
+                console.log("Calcular presionado");
+              }}
+            >
+              Calcular
+            </button>
 
-          <button className="boton-calcular">Calcular</button>
+            <button
+              className="boton-calcular"
+              onClick={exportarPDF}
+              style={{ backgroundColor: "#c0392b", color: "#fff", border: "none" }}
+            >
+              Exportar a PDF
+            </button>
+          </div>
         </div>
       </div>
     </>

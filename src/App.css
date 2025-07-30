@@ -187,3 +187,7 @@ header h1 {
 .fila select {
   background-color: #f0f4ff; /* un celeste muy claro */
 }
+
+.boton-separado {
+  margin-top: 1.5rem;
+}
