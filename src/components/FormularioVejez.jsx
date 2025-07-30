@@ -103,44 +103,46 @@ const FormularioVejez = () => {
   };
 
   return (
-    <div className="fondo-bienvenida">
+    <>
       <Header />
-      <div className="formulario-container">
-        <h1 style={{ color: "#1a4381", marginBottom: "1rem" }}>Formulario - Pensión de Vejez</h1>
+      <div className="fondo-bienvenida">
+        <div className="formulario-container">
+          <h1 style={{ color: "#1a4381", marginBottom: "1rem" }}>Formulario - Pensión de Vejez</h1>
 
-        <div className="fila">
-          <label>Cargar archivo semiestructurada</label>
-          <input type="file" accept=".txt" onChange={(e) => handleFileUpload(e, "formulario")} />
-        </div>
-        <div className="fila">
-          <label>Cargar archivo de valores cuota</label>
-          <input type="file" accept=".txt,.tsv" onChange={(e) => handleFileUpload(e, "cuotas")} />
-        </div>
-        <div className="fila">
-          <label>Cargar archivo de tasas de interés</label>
-          <input type="file" accept=".txt,.tsv" onChange={(e) => handleFileUpload(e, "tasas")} />
-        </div>
+          <div className="fila">
+            <label>Cargar archivo semiestructurada</label>
+            <input type="file" accept=".txt" onChange={(e) => handleFileUpload(e, "formulario")} />
+          </div>
+          <div className="fila">
+            <label>Cargar archivo de valores cuota</label>
+            <input type="file" accept=".txt,.tsv" onChange={(e) => handleFileUpload(e, "cuotas")} />
+          </div>
+          <div className="fila">
+            <label>Cargar archivo de tasas de interés</label>
+            <input type="file" accept=".txt,.tsv" onChange={(e) => handleFileUpload(e, "tasas")} />
+          </div>
 
-        <div className="formulario-grid ajustado">
-          {campos.map(({ label, tipo }, index) => (
-            <div className="fila" key={index}>
-              <label>{label}</label>
-              <input
-                type="text"
-                className={tipo}
-                value={formData[label] || ""}
-                onChange={(e) =>
-                  tipo === "manual" ? setFormData({ ...formData, [label]: e.target.value }) : null
-                }
-                readOnly={tipo !== "manual"}
-              />
-            </div>
-          ))}
-        </div>
+          <div className="formulario-grid ajustado">
+            {campos.map(({ label, tipo }, index) => (
+              <div className="fila" key={index}>
+                <label>{label}</label>
+                <input
+                  type="text"
+                  className={tipo}
+                  value={formData[label] || ""}
+                  onChange={(e) =>
+                    tipo === "manual" ? setFormData({ ...formData, [label]: e.target.value }) : null
+                  }
+                  readOnly={tipo !== "manual"}
+                />
+              </div>
+            ))}
+          </div>
 
-        <button className="boton-calcular">Calcular</button>
+          <button className="boton-calcular">Calcular</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
