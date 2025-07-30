@@ -1,0 +1,136 @@
+/* Reset y base */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f9ff;
+  height: 100%;
+}
+
+/* Contenedor principal (útil si lo usas) */
+.app-container {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+/* Fondo azul para pantallas con fondo */
+.fondo-bienvenida {
+  background-color: #66ccff;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* para centrar verticalmente */
+}
+
+/* Contenedor blanco para formularios y textos */
+.formulario-container {
+  background-color: white;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%; /* para que sea responsive */
+  box-sizing: border-box;
+  text-align: left; /* mejor para formularios */
+}
+
+/* Logo en bienvenida */
+.bienvenida img,
+.bienvenida .logo-super {
+  width: 150px;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+/* Textos en bienvenida */
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #66ccff;
+  color: white;
+  text-align: center;
+}
+
+/* Inputs y etiquetas */
+.fila {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.fila label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.fila input[type="text"],
+.fila select {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.fila input[type="text"]:focus,
+.fila select:focus {
+  border-color: #1a4381;
+  outline: none;
+}
+
+/* Botón principal */
+.boton-calcular {
+  background-color: #1a4381;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.boton-calcular:hover {
+  background-color: #163660;
+}
+
+/* Header */
+header {
+  background-color: #1a4381;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header img {
+  height: 40px;
+  width: auto;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  cursor: pointer; /* si quieres que sea clickeable */
+}
