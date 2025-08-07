@@ -160,48 +160,47 @@ const FormularioVejez = () => {
       <Header />
       <div className="fondo-bienvenida">
         <div className="formulario-container">
-          <h1 style={{ color: "#1a4381", marginBottom: "1rem" }}>
-            PAFE-Pensión de Vejez
-          </h1>
+          <h1 className="titulo-formulario">PAFE-Pensión de Vejez</h1>
 
           <div className="boton-separado-grid">
-            <div>
+            <div className="fila">
               <label>Cargar archivo Formulario Base (.csv)</label>
               <input type="file" accept=".csv" onChange={handleArchivoFormularioBase} />
             </div>
-            <div>
+            <div className="fila">
               <label>Cargar archivo Valores Cuota</label>
               <input type="file" accept=".csv" onChange={handleArchivoValoresCuota} />
             </div>
-            <div>
+            <div className="fila">
               <label>Cargar archivo Tasa de Interés</label>
               <input type="file" accept=".csv" onChange={handleArchivoTasaInteres} />
             </div>
-            <div>
+            <div className="fila">
               <label>Cargar archivo UF</label>
               <input type="file" accept=".csv" onChange={handleArchivoUF} />
             </div>
           </div>
 
-          <div className="formulario-grid ajustado">
+          <div className="formulario-grid-horizontal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
             {campos.map(({ label, tipo }, index) => (
-              <div className="fila" key={index}>
-                <label>{label}</label>
+              <div className="campo-formulario" key={index} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <label className="etiqueta" style={{ width: '50%' }}>{label}</label>
                 <input
                   type="text"
-                  className={tipo}
+                  className={`input-campo ${tipo}`}
                   value={formData[label] || ""}
                   onChange={(e) => tipo === "manual" ? setFormData({ ...formData, [label]: e.target.value }) : null}
                   readOnly={tipo !== "manual"}
+                  style={{ flex: 1 }}
                 />
               </div>
             ))}
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "2rem" }}>
-            <button className="boton-calcular" onClick={handleCalcular}>Calcular</button>
-            <button className="boton-calcular" onClick={exportarPDF} style={{ backgroundColor: "#c0392b", color: "#fff", border: "none" }}>Exportar a PDF</button>
-            <button className="boton-calcular" onClick={limpiarFormulario} style={{ backgroundColor: "#7f8c8d", color: "#fff", border: "none" }}>Limpiar formulario</button>
+          <div className="botonera" style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
+            <button className="boton-calcular" onClick={handleCalcular} style={{ backgroundColor: '#1a4381', color: 'white' }}>Calcular</button>
+            <button className="boton-calcular" onClick={exportarPDF} style={{ backgroundColor: '#009688', color: 'white' }}>Exportar a PDF</button>
+            <button className="boton-calcular" onClick={limpiarFormulario} style={{ backgroundColor: '#888', color: 'white' }}>Limpiar formulario</button>
           </div>
         </div>
       </div>
