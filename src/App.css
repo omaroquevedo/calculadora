@@ -140,6 +140,7 @@ header h1 {
   margin: 0;
   width: 100%;
 }
+
 .contenido {
   background-color: white;
   border-radius: 12px;
@@ -185,9 +186,46 @@ header h1 {
 
 .fila input[type="text"],
 .fila select {
-  background-color: #f0f4ff; /* un celeste muy claro */
+  background-color: #f0f4ff; /* un celeste muy claro base */
 }
 
+/* Botón extra separado */
 .boton-separado {
   margin-top: 1.5rem;
+}
+
+/* 💡 Colores por tipo de campo */
+input.auto {
+  background-color: #f0f0f0 !important;
+  color: #777;
+  font-style: italic;
+}
+
+input.manual {
+  background-color: #fffbe6 !important;
+  color: #000;
+}
+
+input.calculado {
+  background-color: #e6f7ff !important;
+  color: #1a4381;
+  font-weight: 600;
+}
+
+/* Tooltip visual al pasar el mouse */
+input.auto:hover::after,
+input.manual:hover::after,
+input.calculado:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  top: -1.5rem;
+  left: 0;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 100;
+  pointer-events: none;
 }
