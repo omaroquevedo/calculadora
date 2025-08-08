@@ -1,28 +1,25 @@
 export default function calcularCampos(formData) {
   const resultado = { ...formData };
 
-  // Obtener valores necesarios
   const saldo1 = parseFloat(formData["Saldo en cuotas CCICO fondo 1 (BDA)"]) || 0;
   const saldo2 = parseFloat(formData["Saldo en cuotas CCICO fondo 2 (BDA)"]) || 0;
   const vc1 = parseFloat(formData["Valor cuota fondo 1"]) || 0;
   const vc2 = parseFloat(formData["Valor cuota fondo 2"]) || 0;
-  const ufHoy = parseFloat(formData["Valor UF hoy"]) || 0;
-  const saldoCuotasBR = parseFloat(formData["Saldo en cuotas BR"]) || 0;
+  const ufSolicitud = parseFloat(formData["Valor UF solicitud pensión"]) || 0;
   const saldoPesosBR = parseFloat(formData["Saldo en pesos BR (BDA)"]) || 0;
   const cnu = parseFloat(formData["CNU"]) || 0;
   const tasaInteres = parseFloat(formData["Tasa interés pensión"]) || 0;
 
-  // Evitar división por cero
-  if (ufHoy === 0) return resultado;
+  if (ufSolicitud === 0) return resultado;
 
   // 1. Saldo en UF CCICO
-  const saldoUfCCICO = ((saldo1 * vc1) + (saldo2 * vc2)) / ufHoy;
+  const saldoUfCCICO = ((saldo1 * vc1) + (saldo2 * vc2)) / ufSolicitud;
   if (!isNaN(saldoUfCCICO)) {
     resultado["Saldo en UF CCICO"] = saldoUfCCICO.toFixed(2);
   }
 
   // 2. Saldo en UF BR
-  const saldoUfBR = saldoCuotasBR / ufHoy;
+  const saldoUfBR = saldoPesosBR / ufSolicitud;
   if (!isNaN(saldoUfBR)) {
     resultado["Saldo en UF BR"] = saldoUfBR.toFixed(2);
   }
@@ -52,7 +49,7 @@ export default function calcularCampos(formData) {
   }
 
   // 7. PAFE en pesos
-  const pafePesos = pafeUF * ufHoy;
+  const pafePesos = pafeUF * ufSolicitud;
   if (!isNaN(pafePesos)) {
     resultado["PAFE en $"] = pafePesos.toFixed(0);
   }
