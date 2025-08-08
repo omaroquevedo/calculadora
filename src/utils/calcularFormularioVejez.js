@@ -43,7 +43,7 @@ export default function calcularCampos(formData) {
   }
 
   // 6. PAFE en UF
-  const pafeUF = saldoPafe * tasaInteres;
+  const pafeUF = saldoPafe / cnuX12;
   if (!isNaN(pafeUF)) {
     resultado["PAFE en UF"] = pafeUF.toFixed(2);
   }

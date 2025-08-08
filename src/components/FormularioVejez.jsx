@@ -4,6 +4,7 @@ import "jspdf-autotable";
 import Header from "./Header";
 import calcularCampos from "../utils/calcularFormularioVejez";
 import Papa from "papaparse";
+import autoTable from "jspdf-autotable"; // ✅ Importar correctamente
 
 const FormularioVejez = () => {
   const [formData, setFormData] = useState({});
@@ -37,6 +38,7 @@ const FormularioVejez = () => {
     { label: "Saldo total en UF BR + CCICO", tipo: "calculado" },
     { label: "Tasa interés pensión", tipo: "auto" },
     { label: "CNU", tipo: "manual" },
+    { label: "CNU cuota mortuoria", tipo: "manual" },
     { label: "CNU x 12", tipo: "calculado" },
     { label: "Saldo para PAFE (menos mortuoria)", tipo: "calculado" },
     { label: "PAFE en UF", tipo: "calculado" },
@@ -140,12 +142,13 @@ const FormularioVejez = () => {
     setFormData({});
   };
 
-  const exportarPDF = () => {
+const exportarPDF = () => {
+  try {
     const doc = new jsPDF();
     doc.setFontSize(14);
     doc.text("Resumen del formulario - Pensión de Vejez", 14, 20);
     const rows = campos.map(({ label }) => [label, formData[label] || ""]);
-    doc.autoTable({
+    autoTable(doc, {
       startY: 30,
       head: [["Campo", "Valor"]],
       body: rows,
@@ -153,7 +156,12 @@ const FormularioVejez = () => {
       headStyles: { fillColor: [26, 67, 129] }
     });
     doc.save("PAFE_vejez.pdf");
-  };
+  } catch (error) {
+    console.error("Error al exportar PDF:", error);
+  }
+};
+
+
 
   return (
     <>
